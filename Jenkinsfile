@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    options { timestamps () }
     stages {
         stage('Parallel Stages'){
             parallel{
@@ -33,7 +33,7 @@ pipeline {
         }
         stage('BDD') {
             when{
-                expression { BRANCH_NAME ==~ /(jenkinsfilenew2|)/ }
+                expression { BRANCH_NAME ==~ /(master|release)/ }
             }
             steps {
                 echo 'BDD Execution..'
