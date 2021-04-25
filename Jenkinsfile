@@ -7,9 +7,19 @@ pipeline {
                 echo 'Building..'
             }
         }
-        stage('Test') {
+        stage('Unit Test') {
             steps {
-                echo 'Testing..'
+                echo 'Building..'
+            }
+        }
+        stage('Sonar') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                echo 'Building..'
             }
         }
         stage('Deploy') {
@@ -17,5 +27,16 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Nexus Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        
     }
 }
