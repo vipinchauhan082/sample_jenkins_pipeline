@@ -34,12 +34,15 @@ pipeline {
         stage('BDD') {
             when{
                 expression { BRANCH_NAME ==~ /(master|release)/ }
-                }
+            }
             steps {
                 echo 'BDD Execution..'
             }
         }
         stage('Nexus Publishing') {
+            when{
+                expression { BRANCH_NAME ==~ /(master|jenkinsfilenew2)/ }
+            }
             steps {
                 echo 'Publishing..'
             }
