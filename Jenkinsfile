@@ -32,7 +32,7 @@ pipeline {
             }
         }
         stage('BDD') {
-            When{
+            when{
                 expression { BRANCH_NAME ==~ /(master|release)/ }
                 }
             steps {
