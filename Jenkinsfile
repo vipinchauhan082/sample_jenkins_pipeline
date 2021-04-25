@@ -2,24 +2,28 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
+        stage('Parallel Stages'){
+            parallel{
+                    stage('Build') {
+                        steps {
+                            echo 'Building..'
+                        }
+                    }
+                    stage('Unit Test') {
+                        steps {
+                            echo 'BuUnit Test..'
+                        }
+                    }
             }
-        }
-        stage('Unit Test') {
-            steps {
-                echo 'Building..'
-            }
-        }
+        }       
         stage('Sonar') {
             steps {
-                echo 'Building..'
+                echo 'Sonar Check..'
             }
         }
         stage('Docker Build') {
             steps {
-                echo 'Building..'
+                echo 'Docker Build..'
             }
         }
         stage('Deploy') {
@@ -27,14 +31,17 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-        stage('Test') {
+        stage('BDD') {
+            When{
+                expression { BRANCH_NAME ==~ /(master|release)/ }
+                }
             steps {
-                echo 'Testing..'
+                echo 'BDD Execution..'
             }
         }
-        stage('Nexus Build') {
+        stage('Nexus Publishing') {
             steps {
-                echo 'Building..'
+                echo 'Publishing..'
             }
         }
         
